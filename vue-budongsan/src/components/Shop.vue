@@ -8,9 +8,10 @@
         v-for="item in store.productArr" :key="item.id"
         @click="store.modalControl()"
     >
-        <img :src="`./src/assets/images/room${item.id}.jpg`" :alt="`${item.name} 사진`">
-        <h4>{{ item.name }}</h4>
-        <p>{{ item.price }} 만원</p>
+        <img :src="`${item.image}`" :alt="`${item.title} 사진`">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.price }} 원</p>
+        <p class="desc">{{ item.content }}</p>
         <button @click="store.increaseCount(item.id)">허위매물신고 <span>신고수 : {{ item.count }}</span></button>
     </div>
 </template>
