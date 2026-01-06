@@ -12,7 +12,6 @@
         <h4>{{ item.title }}</h4>
         <p>{{ item.price }} 원</p>
         <p class="desc">{{ item.content }}</p>
-        <button @click="store.increaseCount(item.id)">허위매물신고 <span>신고수 : {{ item.count }}</span></button>
     </div>
 </template>
 

@@ -10,12 +10,12 @@ export const useProductStore = defineStore('product', {
         }
     }),
     actions: {
-        increaseCount(id){
-            const product = this.productArr.find( item => item.id === id );
-            if(!product) return;
+        // increaseCount(id){
+        //     const product = this.productArr.find( item => item.id === id );
+        //     if(!product) return;
 
-            product.count++;
-        },
+        //     product.count++;
+        // },
         modalControl(){
             this.modalItem.open = !this.modalItem.open;
         },
