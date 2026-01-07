@@ -1,6 +1,7 @@
 <template>
     <div class="discount text-bg-dark p-3">
         <p class="text">지금 결제하면 20% 할인</p>
+        <button>X</button>
     </div>
 </template>
 

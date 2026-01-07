@@ -8,7 +8,8 @@ export const useProductStore = defineStore('product', {
         modalItem: {
             open: false,
         },
-        selectedProduct: null
+        selectedProduct: null,
+        // hideDiscountBox: false,
     }),
     actions: {
         // increaseCount(id){
