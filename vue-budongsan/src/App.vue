@@ -1,11 +1,12 @@
 <template>
     <Navigation />
-    <Shop />
-    
+    <DiscountEvent />
+    <Shop />    
     <Modal v-if="store.modalItem.open"/>
 </template>
 
 <script setup>
+    import DiscountEvent from './components/discountEvent.vue';
     import Navigation from './components/Navigation.vue';
     import Shop from './components/Shop.vue';
     import Modal from './components/Modal.vue';

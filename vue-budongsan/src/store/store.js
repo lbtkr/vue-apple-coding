@@ -7,7 +7,8 @@ export const useProductStore = defineStore('product', {
         productArr : roomData,
         modalItem: {
             open: false,
-        }
+        },
+        selectedProduct: null
     }),
     actions: {
         // increaseCount(id){
@@ -16,8 +17,9 @@ export const useProductStore = defineStore('product', {
 
         //     product.count++;
         // },
-        modalControl(){
+        modalControl(id){
             this.modalItem.open = !this.modalItem.open;
+            this.selectedProduct = this.productArr.find(item => item.id === id);
         },
     },
     // vuex의 mutation 사라짐

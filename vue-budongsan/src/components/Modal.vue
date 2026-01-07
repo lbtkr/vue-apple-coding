@@ -1,12 +1,29 @@
 <template>
-    <div class="modal black-bg">
-        <div class="white-bg">
-            <h4>상세페이지</h4>
-            <p>상세페이지 내용</p>
-            <button @click="store.modalControl()">닫기</button>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">매물 상세</h5>
+                    <button type="button"
+                            class="btn-close"
+                            @click="store.modalControl()"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>{{ store.selectedProduct.title}}</h4>
+                    <figure class="figure prd-img">
+                        <img
+                            class="figure-img img-fluid rounded"
+                            :src="store.selectedProduct.image" :alt="`${store.selectedProduct.title} 사진`">
+                        <figcaption class="figure-caption">{{ store.selectedProduct.title }} photo</figcaption>
+                    </figure>
+                    <p class="desc">{{ store.selectedProduct.content }}</p>
+                </div>
+            </div>
         </div>
-
     </div>
+
 </template>
 
 <script setup>
@@ -18,24 +35,22 @@
 <style lang="scss" scoped>
 .modal {
     display:flex;
-    justify-content:center;
-    align-items:center;
-    position:fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    width:100%;
-    height:100%;
-    &.black-bg{
-        background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.5);
+    h4 {
+        margin-bottom:20px;
+        font-size:18px;
+        font-weight:600;
+        font-family:'Noto Sans KR', sans-serif;
+        text-align:left;
     }
-    .white-bg{
-        width:80%;
-        height:80%;
-        padding:20px;
-        background:#fff;
-        border-radius:8px;
+    .prd-img{
+        width:100%;
+        img{
+            width:100%;
+        };
+    }
+    .desc{
+        text-align:left;
     }
 }
 </style>
