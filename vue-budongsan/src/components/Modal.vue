@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">매물 상세</h5>
+                    <h5 class="modal-title">{{ store.selectedProduct.title}}</h5>
                     <button type="button"
                             class="btn-close"
                             @click="store.modalControl()"
@@ -11,7 +11,6 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4>{{ store.selectedProduct.title}}</h4>
                     <figure class="figure prd-img">
                         <img
                             class="figure-img img-fluid rounded"
@@ -36,6 +35,11 @@
 .modal {
     display:flex;
     background:rgba(0,0,0,0.5);
+    .modal-header{
+        .modal-title {
+            padding-left:8px;
+        }
+    }
     h4 {
         margin-bottom:20px;
         font-size:18px;

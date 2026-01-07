@@ -14,9 +14,4 @@
     import { useProductStore } from './store/store';
 
     const store = useProductStore();
-
 </script>
-
-<style lang="scss" scoped>
-
-</style>
