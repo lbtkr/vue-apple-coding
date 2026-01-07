@@ -3,32 +3,59 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ store.selectedProduct.title}}</h5>
+                    <h5 class="modal-title">{{ product.title}}</h5>
                     <button type="button"
                             class="btn-close"
-                            @click="store.modalControl()"
+                            @click="emit('close')"
                             data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                            aria-label="Close">
+                    </button>
                 </div>
                 <div class="modal-body">
                     <figure class="figure prd-img">
                         <img
                             class="figure-img img-fluid rounded"
-                            :src="store.selectedProduct.image" :alt="`${store.selectedProduct.title} 사진`">
-                        <figcaption class="figure-caption">{{ store.selectedProduct.title }} photo</figcaption>
+                            :src="product.image"
+                            :alt="`${product.title} 사진`">
+                        <figcaption class="figure-caption">{{ product.title }} photo</figcaption>
                     </figure>
-                    <p class="desc">{{ store.selectedProduct.content }}</p>
+                    <p class="desc">{{ product.content }}</p>
+                    <div class="wrap">
+                        <form action="">
+                            <span>계약 기간&nbsp;:&nbsp;</span>
+                            <input  type="number"
+                                    maxlength="3"
+                                    :value="stayMonth"
+                                    @input="emitStayMonth($event)"
+                            >
+                            <!-- @input="store.modalItem.stayMonth = $event.target.value" -->
+                            <span>개월</span>
+                        </form>
+                        <p><span>{{ totalPrice }}</span>원</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup>
-    import { useProductStore } from './../store/store';
+    import { computed } from 'vue';
 
-    const store = useProductStore();
+    const props = defineProps({
+        product: Object,
+        stayMonth: Number,
+    });
+    const emit = defineEmits(['close', 'update:stayMonth']);
+    
+    const emitStayMonth = (e) => {
+        // input 값은 문자열이므로 Number 변환 + 빈 값 방어
+        const month = Number(e.target.value || 0);
+        emit('update:stayMonth', month);
+    }
+    const totalPrice = computed(() => {
+        return (props.product.price * (props.stayMonth || 0)).toLocaleString();
+    })
 </script>
 
 <style lang="scss" scoped>
@@ -54,7 +81,42 @@
         };
     }
     .desc{
-        text-align:left;
+        margin-bottom:12px;
+        // text-align:left;
+    }
+    .wrap{
+        display:flex;
+        gap:20px;
+        form{
+            flex:none;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            align-items:end;
+            width:50%;
+            padding:12px 20px;
+            border-radius:5px;
+            border:2px solid#ebebeb;
+            input{
+                display:inline-block;
+                width:50px;
+                text-align:center;
+                background:transparent;
+                border:1px solid #999;
+                border-width:0 0 1px;
+            }
+        }
+        p {
+            width:100%;
+            margin:auto 0 0;
+            font-size:20px;
+            text-align:right;
+            span{
+                font-size:30px;
+                font-weight:bold;
+                color:rgb(16, 76, 155)
+            }
+        }
     }
 }
 </style>

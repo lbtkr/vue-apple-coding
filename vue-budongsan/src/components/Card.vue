@@ -1,16 +1,16 @@
 <script setup>
-    import { useProductStore } from '../store/store';
-    const store = useProductStore();
-
-    const { prdItem } = defineProps({
+    const props = defineProps({
         prdItem: Object,
     });
+    const emit = defineEmits(['select']);
 </script>
 
 <template>
-    <div class="row item-box" @click="store.modalControl(prdItem.id)">
+    <div class="row item-box"
+        @click="$emit('select', prdItem.id)">
         <div class="col-sm-6">
-            <img :src="`${prdItem.image}`" :alt="`${prdItem.title} 사진`">
+            <img :src="`${prdItem.image}`"
+                 :alt="`${prdItem.title} 사진`">
         </div>
         <div class="col-sm-6">
             <h4>{{ prdItem.title }}</h4>
