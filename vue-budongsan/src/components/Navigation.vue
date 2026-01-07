@@ -31,9 +31,3 @@
         { name: 'About', href: '#' },
     ];
 </script>
-
-<style lang="scss" scoped>
-    .navbar {
-        
-    }
-</style>

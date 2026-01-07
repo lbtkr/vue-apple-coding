@@ -23,9 +23,13 @@
 .shop-container{
     padding:20px 0;
     .item-box {
-        margin-bottom:20px;
         justify-content:flex-start;
         cursor:pointer;
+        & +.item-box{
+            margin-top:20px;
+            padding-top:20px;
+            border-top:1px solid #e1e1e1; 
+        }
         .col-sm-6 {
             text-align:left;
             img {
