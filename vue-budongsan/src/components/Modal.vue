@@ -23,7 +23,7 @@
                     <div class="wrap">
                         <form action="">
                             <span>계약 기간&nbsp;:&nbsp;</span>
-                            <input  type="number"
+                            <input  type="text"
                                     maxlength="3"
                                     :value="stayMonth"
                                     @input="emitStayMonth($event)"
@@ -40,22 +40,31 @@
 </template>
 
 <script setup>
-    import { computed } from 'vue';
+    import { computed, watch } from 'vue';
 
     const props = defineProps({
         product: Object,
         stayMonth: Number,
     });
     const emit = defineEmits(['close', 'update:stayMonth']);
-    
+
+    // 숫자만 입력 가능하도록
     const emitStayMonth = (e) => {
         // input 값은 문자열이므로 Number 변환 + 빈 값 방어
-        const month = Number(e.target.value || 0);
-        emit('update:stayMonth', month);
+        // const month = Number(e.target.value || 0);
+        const raw = e.target.value ?? '';
+        if(!/^\d*$/.test(raw)){
+            console.log('숫자아님');
+            const cleaned = raw.replace(/\D/g, '');
+            emit('update:stayMonth', cleaned);
+            return;
+        }
+
+        emit('update:stayMonth', raw === '' ? 0 : Number(raw));
     }
     const totalPrice = computed(() => {
         return (props.product.price * (props.stayMonth || 0)).toLocaleString();
-    })
+    });
 </script>
 
 <style lang="scss" scoped>
