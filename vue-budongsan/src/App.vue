@@ -2,6 +2,8 @@
     <Navigation />
     <DiscountEvent v-if="!store.isDiscountBoxHide"/>
 
+    <SortButtons />
+
     <div class="container">
         <Card v-for="item in store.productArr"
               :key="item.id"                
@@ -31,6 +33,7 @@
 
 <script setup>
     import DiscountEvent from './components/discountEvent.vue';
+    import SortButtons from './components/SortButtons.vue';
     import Navigation from './components/Navigation.vue';
     import Card from './components/Card.vue';
     import Modal from './components/Modal.vue';
@@ -42,7 +45,7 @@
 
 <style scoped lang="scss">
     .container{
-        padding:20px 0;
+        padding:20px 0 60px;
     }
 
     /*  
