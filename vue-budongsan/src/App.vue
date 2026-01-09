@@ -19,11 +19,13 @@
             을 생략해서
           v-model:stayMonth="store.modalItem.stayMonth" 로 선언
     --------------------------------------------------------------->
-    <Modal  v-if="store.modalItem.open && store.selectedProduct"
-            :product="store.selectedProduct"
-            v-model:stayMonth="store.modalItem.stayMonth"
-            @close="store.modalControl()"
-    />
+    <Transition name="fade" class="start" :class="{end : store.modalControl.open}">
+        <Modal  v-if="store.modalItem.open && store.selectedProduct"
+                :product="store.selectedProduct"
+                v-model:stayMonth="store.modalItem.stayMonth"
+                @close="store.modalControl()"
+        />
+    </Transition>
     
 </template>
 
@@ -34,6 +36,7 @@
     import Modal from './components/Modal.vue';
     
     import { useProductStore } from './store/store';
+    import { Transition } from 'vue';
     const store = useProductStore();
 </script>
 
@@ -41,4 +44,32 @@
     .container{
         padding:20px 0;
     }
+
+    /*  
+        .작명.enter-from    | 시작 시 스타일
+        .작명-enter-active  | 애니메이션 동작 중 상태, 대부분 transition 이런거
+        .작명-enter-to      | 끝날 시 스타일
+        .작명.leave-from    | 시작 시 스타일
+        .작명-leave-active  | 애니메이션 동작 중 상태, 대부분 transition 이런거
+        .작명-leave-to      | 끝날 시 스타일
+    */
+    .fade-enter-from{
+        opacity:0;
+    }
+    .fade-enter-active{
+        transition:all 1s;
+    }
+    .fade-enter-to{
+        opacity:1;
+    }
+    .fade-leave-from{
+        opacity:1;
+    }
+    .fade-leave-active{
+        transition:all 1s;
+    }
+    .fade-leave-to{
+        opacity:0;
+    }
+    
 </style>
