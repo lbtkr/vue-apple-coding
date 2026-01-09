@@ -1,18 +1,32 @@
 <template>
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" class="btn btn-outline-secondary" @click="store.priceAscSorts()">가격순 정렬</button>
-        <button type="button" class="btn btn-outline-secondary" @click="store.priceDesSort()">가격순 정렬</button>
-        <button type="button" class="btn btn-outline-secondary" @click="store.nameAscSorts()">이름순 정렬</button>
-        <button type="button" class="btn btn-outline-secondary" @click="store.sortBack()">되돌리기</button>
+    <div class="btn-group sort-btns" role="group" aria-label="sort btns">
+        <button
+            type="button"
+            class="btn btn-outline-secondary"
+            v-for="opt in options"
+            :key="opt.key"
+            @click="emitSorts(opt)"
+        >
+            {{ opt.label }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary" @click="$emit('reset')">초기화</button>
     </div>
 </template>
 
 <script setup>
+    const props = defineProps({
+        options: Array,
+    });
+    const emit = defineEmits(['sort', 'reset']);
 
+    const emitSorts = (opt) => {
+        console.log("opt ======= ", opt);
+        emit('sort', {key: opt.key, dir: opt.dir, type: opt.type, locale: opt.locale})
+    }
 </script>
 
 <style lang="scss" scoped>
-    .btn-group{
+    .sort-btns{
         --bs-gutter-x: 1.5rem;
         justify-content:flex-end;
         width:100%;

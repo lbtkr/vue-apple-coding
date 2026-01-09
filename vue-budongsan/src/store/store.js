@@ -3,19 +3,50 @@ import roomData from '/src/assets/room-data.js';
 
 export const useProductStore = defineStore('product', {
     state: () => ({
-        productArr : roomData,
-        productOriginArr : [...roomData],
         modalItem: {
             open: false,
             stayMonth: 1,
         },
-        selectedProduct: null,
         isDiscountBoxHide: false,
+        selectedProduct: null,
+
+        // 상품정렬
+        productOriginArr: roomData,
+        sortKey: null,
+        sortDir: 'asc',
+        sortType: null,
+        sortLocale: 'ko',
     }),
+    getters: {
+        productArr(state){
+            const arr = [...this.productOriginArr];
+            if(!this.sortKey) return arr;
+
+            /** 숫자정렬 */
+            if(state.sortType == 'number'){
+                arr.sort((a,b) => state.sortDir == 'asc'
+                    ? a[state.sortKey] - b[state.sortKey]
+                    : b[state.sortKey] - a[state.sortKey]
+                );
+            }
+            /** 문자정렬 */
+            if(state.sortType == 'string'){
+                arr.sort((a,b) => state.sortDir === 'asc'
+                    ? String(a[state.sortKey]).localeCompare(String(b[state.sortKey]), state.sortLocale)
+                    : String(b[state.sortKey]).localeCompare(String(a[state.sortKey]), state.sortLocale)
+                );
+            }
+            return arr;
+        }
+    },
     actions: {
-        modalControl(id){
-            this.modalItem.open = !this.modalItem.open;
+        openModal(id){
+            this.modalItem.open = true;
             this.selectedProduct = this.productArr.find(item => item.id === id);
+        },
+        closeModal(){
+            this.modalItem.open = false;
+            this.selectedProduct = null;
         },
         hideDiscountBox(){
             this.isDiscountBoxHide = !this.isDiscountBoxHide;
@@ -27,24 +58,18 @@ export const useProductStore = defineStore('product', {
          * nameAscSorts()   | 상품명 가나다 정렬
          * sortBack()       | 정렬 복구
          */
-        priceAscSorts(){
-            this.productArr.sort(function(a, b){
-                return a.price - b.price;
-            });
+        setSort({key, dir, type, locale}){
+            this.sortKey    = key;
+            this.sortDir    = dir;
+            this.sortType   = type;
+            this.sortLocale = locale;
         },
-        priceDesSort(){
-            this.productArr.sort(function(a, b){
-                return b.price - a.price;
-            });
+        clearSort(){
+            this.sortKey    = null;
+            this.sortDir    = 'asc';
+            this.sortType   = null;
+            this.sortLocale = 'ko';
         },
-        nameAscSorts(){
-            this.productArr.sort(function(a, b){
-                return a.title.localeCompare(b.title);;
-            });
-        },
-        sortBack(){
-            this.productArr = [...this.productOriginArr];
-        }   
     },
     // vuex의 mutation 사라짐
 });

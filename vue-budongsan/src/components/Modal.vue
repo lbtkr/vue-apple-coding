@@ -8,7 +8,8 @@
                             class="btn-close"
                             @click="emit('close')"
                             data-bs-dismiss="modal"
-                            aria-label="Close">
+                            aria-label="Close"
+                            :title="`${product.title} 모달창 닫기`">
                     </button>
                 </div>
                 <div class="modal-body">

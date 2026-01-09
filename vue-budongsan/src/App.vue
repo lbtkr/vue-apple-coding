@@ -2,13 +2,21 @@
     <Navigation />
     <DiscountEvent v-if="!store.isDiscountBoxHide"/>
 
-    <SortButtons />
+    <SortButtons
+        :options="[
+            { key: 'price', dir: 'asc', type: 'number', label: '가격 낮은순',},
+            { key: 'price', dir: 'desc', type: 'number', label: '가격 높은순',},
+            { key: 'title', dir: 'asc', type: 'string', label: '상품명순',},
+        ]"
+        @sort="store.setSort"
+        @reset="store.clearSort"
+    />
 
     <div class="container">
         <Card v-for="item in store.productArr"
               :key="item.id"                
               :prdItem="item"
-              @select="store.modalControl"
+              @select="store.openModal"
         />
     </div>
 
@@ -21,11 +29,11 @@
             을 생략해서
           v-model:stayMonth="store.modalItem.stayMonth" 로 선언
     --------------------------------------------------------------->
-    <Transition name="fade" class="start" :class="{end : store.modalControl.open}">
+    <Transition name="fade" class="start" :class="{end : store.modalItem.open}">
         <Modal  v-if="store.modalItem.open && store.selectedProduct"
                 :product="store.selectedProduct"
                 v-model:stayMonth="store.modalItem.stayMonth"
-                @close="store.modalControl()"
+                @close="store.closeModal()"
         />
     </Transition>
     
