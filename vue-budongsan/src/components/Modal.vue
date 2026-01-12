@@ -29,7 +29,6 @@
                                     :value="stayMonth"
                                     @input="emitStayMonth($event)"
                             >
-                            <!-- @input="store.modalItem.stayMonth = $event.target.value" -->
                             <span>개월</span>
                         </form>
                         <p><span>{{ totalPrice }}</span>원</p>
@@ -41,7 +40,7 @@
 </template>
 
 <script setup>
-    import { computed, watch } from 'vue';
+    import { computed, onUpdated } from 'vue';
 
     const props = defineProps({
         product: Object,
@@ -65,6 +64,14 @@
     }
     const totalPrice = computed(() => {
         return (props.product.price * (props.stayMonth || 0)).toLocaleString();
+    });
+
+    onUpdated(() => {
+        if(props.stayMonth === 2){
+            alert('2개월 이상만 계약이 가능합니다');
+            emit('update:stayMonth', 0);
+        }
+        console.log('업데이트 되고 있음', props.stayMonth)
     });
 </script>
 
