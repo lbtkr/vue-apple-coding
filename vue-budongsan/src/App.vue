@@ -1,15 +1,33 @@
+<script setup>
+    import DiscountEvent from './components/discountEvent.vue';
+    import SortButtons from './components/SortButtons.vue';
+    import Navigation from './components/Navigation.vue';
+    import Card from './components/Card.vue';
+    import Modal from './components/Modal.vue';
+    
+    import { useProductStore } from './store/store';
+    import { Transition, ref } from 'vue';
+
+    const store = useProductStore();
+    const discountRate = ref(30); // 할인률
+</script>
+
 <template>
     <Navigation />
+
     <DiscountEvent
         v-if="!store.isDiscountBoxHide"
+        :rate="discountRate"
         @hideDscntBox="store.hideDiscountBox"
+        @decrease="store.dcreaseDiscount"
+        @updateRate="discountRate = $event"
     />
 
     <SortButtons
         :options="[
-            { key: 'price', dir: 'asc', type: 'number', label: '가격 낮은순',},
+            { key: 'price', dir: 'asc',  type: 'number', label: '가격 낮은순',},
             { key: 'price', dir: 'desc', type: 'number', label: '가격 높은순',},
-            { key: 'title', dir: 'asc', type: 'string', label: '상품명순',},
+            { key: 'title', dir: 'asc',  type: 'string', label: '상품명순',},
         ]"
         @sort="store.setSort"
         @reset="store.clearSort"
@@ -41,18 +59,6 @@
     </Transition>
     
 </template>
-
-<script setup>
-    import DiscountEvent from './components/discountEvent.vue';
-    import SortButtons from './components/SortButtons.vue';
-    import Navigation from './components/Navigation.vue';
-    import Card from './components/Card.vue';
-    import Modal from './components/Modal.vue';
-    
-    import { useProductStore } from './store/store';
-    import { Transition } from 'vue';
-    const store = useProductStore();
-</script>
 
 <style scoped lang="scss">
     .container{
