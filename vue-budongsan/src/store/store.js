@@ -49,7 +49,7 @@ export const useProductStore = defineStore('product', {
             this.selectedProduct = null;
         },
         hideDiscountBox(){
-            this.isDiscountBoxHide = !this.isDiscountBoxHide;
+            this.isDiscountBoxHide = true;
         },
         /**
          # 정렬 함수

@@ -1,6 +1,9 @@
 <template>
     <Navigation />
-    <DiscountEvent v-if="!store.isDiscountBoxHide"/>
+    <DiscountEvent
+        v-if="!store.isDiscountBoxHide"
+        @hideDscntBox="store.hideDiscountBox"
+    />
 
     <SortButtons
         :options="[

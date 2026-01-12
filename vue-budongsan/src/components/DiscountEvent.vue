@@ -1,12 +1,14 @@
 <template>
     <div class="discount text-bg-dark p-3">
         <p class="text">지금 결제하면 20% 할인</p>
-        <button @click="store.actions.hideDiscountBox();">❌</button>
+        <button
+            type="button"
+            @click="emit('hideDscntBox')">❌</button>
     </div>
 </template>
 
 <script setup>
-
+const emit = defineEmits(['hideDscntBox']);
 </script>
 
 <style lang="scss" scoped>
