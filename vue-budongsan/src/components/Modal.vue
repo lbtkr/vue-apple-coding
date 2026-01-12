@@ -71,7 +71,6 @@
             alert('2개월 이상만 계약이 가능합니다');
             emit('update:stayMonth', 0);
         }
-        console.log('업데이트 되고 있음', props.stayMonth)
     });
 </script>
 
