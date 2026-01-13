@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <canvas ref="illoEl" class="illo"></canvas>
-    <p>Click &amp; drag to rotate</p>
+    <!-- <p>Click &amp; drag to rotate</p> -->
   </div>
 </template>
 
@@ -549,21 +549,21 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .container {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #435;
-  color: #fff;
-  font-family: sans-serif;
-  text-align: center;
+    min-height: calc(100vh - 56px);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #435;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+    .illo {
+        display: block;
+        margin: 0 auto;
+        cursor: move;
+    }
 }
 
-.illo {
-  display: block;
-  margin: 0 auto;
-  cursor: move;
-}
 </style>

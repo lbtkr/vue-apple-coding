@@ -8,7 +8,11 @@
     <div
         v-for="(item, idx) in props.prdItem"
         :key="idx"
-        @click="$router.push(`/detail/${idx}`)">
+        @click="$router.push({
+            name: 'Detail',
+            params: { id }
+        })"
+    >
         <h5>{{ item.title }}</h5>
         <p>{{ item.date }}</p>
     </div>

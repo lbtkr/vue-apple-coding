@@ -6,11 +6,20 @@ const routes = [
         component: () => import('@/components/Home.vue'),
     },
     {
+        path: "/home",
+        redirect: '/',
+    },
+    {
         path: "/list",
         component: () => import('@/components/List.vue'),
     },
+    {
+        path: "/detail",
+        redirect: "/detail/0",
+    },
     {  
-        path: "/detail/:id?",
+        path: "/detail/:id",
+        name: 'Detail',
         component:  () => import('@/components/Detail.vue'),
         children: [
             {
@@ -23,7 +32,10 @@ const routes = [
             }
         ],
     },
-    { path: "/:pathMatch(.*)*", component: () => import('@/components/NotFound.vue'),}
+    {
+        path: "/:pathMatch(.*)*",
+        component: () => import('@/components/NotFound.vue'),
+    }
 ];
 
 const router = createRouter({
