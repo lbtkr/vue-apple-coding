@@ -1,6 +1,6 @@
 <script setup>
+
 import Navbar from './components/Navbar.vue';
-import List from './components/List.vue';
 import { useProductStore } from './store/store';
 
 const store = useProductStore();
@@ -8,16 +8,12 @@ const store = useProductStore();
 
 <template>
     <Navbar />
-    
-    <div class="container mt-4">
-        
-        <router-view
-            :prdItem="store.blogData"
-        />
-    </div>
+    <router-view
+        :prdItem="store.blogData"
+    />
     
 </template>
 
 <style scoped>
-
+.container{max-width:100% !important;}
 </style>

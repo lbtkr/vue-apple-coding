@@ -5,22 +5,10 @@ import Detail from '@/components/Detail.vue'
 import NotFound from "./components/NotFound.vue";
 
 const routes = [
-    {
-        path: "/",
-        component: Home,
-    },
-    {
-        path: "/list",
-        component: List,
-    },
-    {
-        path: "/detail/:id",
-        component: Detail,
-    },
-    {
-        path: "/:pathMatch(.*)*",
-        component: NotFound,
-    },
+    { path: "/", component: Home, },
+    { path: "/list", component: List, },
+    { path: "/detail/:id", component: Detail, },
+    { path: "/:pathMatch(.*)*", component: NotFound, },
 ];
 
 const router = createRouter({
