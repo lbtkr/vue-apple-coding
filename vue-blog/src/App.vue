@@ -1,11 +1,22 @@
-<script setup></script>
+<script setup>
+import Navbar from './components/Navbar.vue';
+import List from './components/List.vue';
+import { useProductStore } from './store/store';
+
+const store = useProductStore();
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+    <Navbar />
+    
+    <div class="container mt-4">
+        <List   v-for="(item, idx) in store.blogData"
+                :key="idx"
+                :prdItem="item"
+        />
+    </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
