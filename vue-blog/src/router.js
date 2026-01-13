@@ -1,29 +1,29 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from './components/Home.vue'
-import List from './components/List.vue'
-import Detail from './components/Detail.vue'
-import NotFound from "./components/NotFound.vue";
-import Author from "./components/Author.vue";
-import Comment from "./components/Comment.vue";
 
 const routes = [
-    { path: "/", component: Home, },
-    { path: "/list", component: List, },
+    {
+        path: "/",
+        component: () => import('@/components/Home.vue'),
+    },
+    {
+        path: "/list",
+        component: () => import('@/components/List.vue'),
+    },
     {  
         path: "/detail/:id?",
-        component: Detail,
+        component:  () => import('@/components/Detail.vue'),
         children: [
             {
-                path: "/author",
-                component: Author,
+                path: "author",
+                component: () => import('@/components/Author.vue'),
             },
             {
-                path: "/comment",
-                component: Comment,
+                path: "comment",
+                component: () => import('@/components/Comment.vue'),
             }
         ],
     },
-    { path: "/:pathMatch(.*)*", component: NotFound, },
+    { path: "/:pathMatch(.*)*", component: () => import('@/components/NotFound.vue'),}
 ];
 
 const router = createRouter({
