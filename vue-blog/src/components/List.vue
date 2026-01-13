@@ -7,7 +7,8 @@
 <template>
     <div
         v-for="(item, idx) in props.prdItem"
-        :key="idx">
+        :key="idx"
+        @click="$router.push(`/detail/${idx}`)">
         <h5>{{ item.title }}</h5>
         <p>{{ item.date }}</p>
     </div>
