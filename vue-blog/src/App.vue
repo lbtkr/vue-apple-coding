@@ -10,11 +10,12 @@ const store = useProductStore();
     <Navbar />
     
     <div class="container mt-4">
-        <List   v-for="(item, idx) in store.blogData"
-                :key="idx"
-                :prdItem="item"
+        
+        <router-view
+            :prdItem="store.blogData"
         />
     </div>
+    
 </template>
 
 <style scoped>

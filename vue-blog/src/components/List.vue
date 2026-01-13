@@ -5,9 +5,11 @@
 </script>
 
 <template>
-    <div>
-        <h5>{{ props.prdItem.title }}</h5>
-        <p>{{ props.prdItem.date }}</p>
+    <div
+        v-for="(item, idx) in props.prdItem"
+        :key="idx">
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.date }}</p>
     </div>
 </template>
 
