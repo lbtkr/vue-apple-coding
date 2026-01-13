@@ -13,9 +13,9 @@
                 <router-link
                     class="nav-link"
                     to="/list">List</router-link>
-                <router-link
+                <!-- <router-link
                     class="nav-link"
-                    to="/detail">Deatil</router-link>
+                    to="/detail">Deatil</router-link> -->
             </div>
         </div>
     </nav>

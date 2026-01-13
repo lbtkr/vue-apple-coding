@@ -5,6 +5,7 @@
         <h3>{{ props.prdItem[$route.params.id].title }}</h3>
         <p>{{ props.prdItem[$route.params.id].content }}</p>
         <button>뒤로</button>
+        <router-view />
     </div>
 </template>
 
