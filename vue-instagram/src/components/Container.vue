@@ -18,11 +18,7 @@
             <div class="upload-image"
                 :style="{backgroundImage: `url(${store.uploadImage})`}"></div>
             <div class="filters">
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
+                <FilterBox />
             </div>
         </div>
 
@@ -33,7 +29,11 @@
             <div class="upload-image"
                 :style="{backgroundImage: `url(${store.uploadImage})`}"></div>
             <div class="write">
-                <textarea class="write-box">write!</textarea>
+                <textarea
+                    v-model="store.uploadContent"
+                    class="write-box"
+                    placeholder="write!"
+                ></textarea>
             </div>
         </div>
     </main>
@@ -42,6 +42,7 @@
 
 <script setup>
     import Post from './Post.vue';
+    import FilterBox from './FilterBox.vue';
     import { usePostStore } from '../store/store';
     const store = usePostStore();
 

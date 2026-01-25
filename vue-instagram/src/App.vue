@@ -4,7 +4,8 @@
             <li>Cancel</li>
         </ul>
         <ul class="header-button-right">
-            <li @click="postStore.step++">Next</li>
+            <li @click="postStore.step++"
+                v-if="postStore.step != 2">Next</li>
             <li
                 v-if="postStore.step == 2"
                 @click="postStore.publish">발행</li>
@@ -20,7 +21,6 @@
         <ul class="footer-button-plus">
             <input
                 @change="postStore.upload"
-                multiple
                 type="file" id="file" class="inputfile" />
             <label for="file" class="input-plus">+</label>
         </ul>
@@ -29,18 +29,13 @@
 
 <script setup>
 import Container from './components/Container.vue';
-// import TabComp from './components/TabComp.vue'
-
 import { usePostStore } from './store/store';
 const postStore = usePostStore();
 
-
+// import TabComp from './components/TabComp.vue'
 </script>
 
 <style lang="scss" scoped>
-body {
-  margin: 0;
-}
 ul {
   padding: 5px;
   list-style-type: none;

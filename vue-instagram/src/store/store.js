@@ -7,6 +7,7 @@ export const usePostStore = defineStore('post', {
         post: postData,
         step: 0,
         uploadImage: '',
+        uploadContent: '',
     }),
     actions: {
         toggleLike(idx) {
@@ -29,13 +30,29 @@ export const usePostStore = defineStore('post', {
             });
         },
         upload(e){
-            let file = e.target.files;
-            let url = URL.createObjectURL(file[0]);
+            let file = e.target?.files?.[0];
+            if (!file) return
+
+            // 이미지 아닌 파일 거르기 (선택)
+            if (!file.type.startsWith('image/')) return
+
+            let url = URL.createObjectURL(file);
             this.step = 1;
             this.uploadImage = url;
         },
         publish(){
-            var myPost = {};
+            console.log(this.uploadContent);
+            var myPost = {
+                id: 100,
+                name: "Sample",
+                userImage: "https://picsum.photos/100?random=3",
+                postImage: this.uploadImage,
+                likes: 50,
+                date: "May 15",
+                liked: false,
+                content: this.uploadContent,
+                filter: "perpetua"
+            };
             this.post.unshift(myPost);
             this.step = 0;
         },
