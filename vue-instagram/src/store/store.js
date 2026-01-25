@@ -6,6 +6,7 @@ export const usePostStore = defineStore('post', {
     state: () => ({
         post: postData,
         step: 0,
+        uploadImage: '',
     }),
     actions: {
         toggleLike(idx) {
@@ -26,6 +27,17 @@ export const usePostStore = defineStore('post', {
             .catch((err) => {
                 console.log(err);
             });
-        }
+        },
+        upload(e){
+            let file = e.target.files;
+            let url = URL.createObjectURL(file[0]);
+            this.step = 1;
+            this.uploadImage = url;
+        },
+        publish(){
+            var myPost = {};
+            this.post.unshift(myPost);
+            this.step = 0;
+        },
     }
 });

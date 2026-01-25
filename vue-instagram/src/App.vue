@@ -4,20 +4,24 @@
             <li>Cancel</li>
         </ul>
         <ul class="header-button-right">
-            <li>Next</li>
+            <li @click="postStore.step++">Next</li>
+            <li
+                v-if="postStore.step == 2"
+                @click="postStore.publish">발행</li>
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
 
-
     <!-- <TabComp /> -->
     <Container/>
 
-    <button @click="postStore.more">더보기</button>
 
     <div class="footer">
         <ul class="footer-button-plus">
-            <input type="file" id="file" class="inputfile" />
+            <input
+                @change="postStore.upload"
+                multiple
+                type="file" id="file" class="inputfile" />
             <label for="file" class="input-plus">+</label>
         </ul>
     </div>
