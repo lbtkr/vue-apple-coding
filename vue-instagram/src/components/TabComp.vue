@@ -1,16 +1,19 @@
 <template>
     <section>
-        <div>내용0</div>
-        <div>내용1</div>
-        <div>내용2</div>
-        
-        <button>버튼0</button>
-        <button>버튼1</button>
-        <button>버튼2</button>
+        <TabMenu
+            v-model="activeTab"/>
+        <TabContent
+            :activeTab="activeTab"/>
+
     </section>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import TabMenu from './TabMenu.vue';
+import TabContent from './TabContent.vue';
+
+const activeTab = ref('cont1'); // ref를 쓰는 이유는 값이 바뀌면 화면이 자동으로 그려지게
 
 </script>
 

@@ -5,6 +5,7 @@ import postData from '/src/assets/post-data.js';
 export const usePostStore = defineStore('post', {
     state: () => ({
         post: postData,
+        step: 0,
     }),
     actions: {
         toggleLike(idx) {

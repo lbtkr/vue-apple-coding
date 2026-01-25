@@ -8,7 +8,7 @@
             :style="{ backgroundImage: `url(${item.postImage})`}"></div>
         <div class="post-content">
             <span>
-                <button @click="postStore.toggleLike(idx)">
+                <button @click="store.toggleLike(idx)">
                     {{ item.liked ? '❤️' : '💙' }}
                 </button>
             </span>
@@ -21,7 +21,7 @@
 
 <script setup>
     import { usePostStore } from '../store/store';
-    const postStore = usePostStore();
+    const store = usePostStore();
 
     const props = defineProps({
         item: Object,
