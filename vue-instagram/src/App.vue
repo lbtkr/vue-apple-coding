@@ -9,7 +9,12 @@
         <img src="./assets/logo.png" class="logo" />
     </div>
 
+
+    <TabComp />
     <Container/>
+
+    <button
+        @click="postStore.more">더보기</button>
 
     <div class="footer">
         <ul class="footer-button-plus">
@@ -20,7 +25,14 @@
 </template>
 
 <script setup>
+import { usePostStore } from './store/store';
+
+
 import Container from './components/Container.vue';
+import TabComp from './components/TabComp.vue'
+
+const postStore = usePostStore();
+
 
 
 </script>

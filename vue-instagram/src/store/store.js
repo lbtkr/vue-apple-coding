@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
 import postData from '/src/assets/post-data.js';
 
 export const usePostStore = defineStore('post', {
@@ -6,10 +7,24 @@ export const usePostStore = defineStore('post', {
         post: postData,
     }),
     actions: {
-    toggleLike(id) {
-        const post = this.post.find(p => p.id === id)
-        post.liked = !post.liked
-        post.likes += post.liked ? 1 : -1
-    },
-}
+        toggleLike(idx) {
+            const post = this.post[idx];
+            console.log(idx);
+            console.log('this === ', this.post[idx]);
+            if (!post) return
+
+            post.liked = !post.liked
+            post.likes += post.liked ? 1 : -1
+        },
+        more(){
+            axios.get('https://codingapple1.github.io/vue/more0.json')
+            .then((data) => {
+                console.log(data.data);
+                this.post.push(data.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+    }
 });

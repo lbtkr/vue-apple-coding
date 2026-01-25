@@ -1,9 +1,10 @@
 <template>
     <div>
         <Post
-            v-for="item in postStore.post"
-            :key="item.id"
+            v-for="(item, idx) in postStore.post"
+            :key="idx"
             :item="item"
+            :idx="idx"
         />
     </div>
 </template>
